@@ -22,13 +22,14 @@ window.addEventListener('load',function(){
 						{promocion:"6-lima",img:"mishel-velasquez.jpg"},
 						{promocion:"6-lima",img:"rosario-felix.jpg"}];
 
-	function crearImg(url){
+	function crearImg(url,clase){
 	 	var img = document.createElement("img");
 	 	var ruta = "assets/images/"
 	 	img.setAttribute("src",ruta+url);
+	 	img.classList.add(clase);
 		return img;
 	}
-
+	//creando mis numeros aleatorios
 	var arrayNumerosAleatorios = [];
 	while(arrayNumerosAleatorios.length<imagenesTotal.length){
 	 	var numAleatorio = Math.floor(Math.random()*imagenesTotal.length);
@@ -40,22 +41,35 @@ window.addEventListener('load',function(){
 
 	var divContenedor = document.getElementById("div-contenedor-img");
 	var docFragment= document.createDocumentFragment();
+	
 	arrayNumerosAleatorios.forEach(function(elem){
 		var url = imagenesTotal[elem].img;
-		docFragment.appendChild(crearImg(url));
+		var clase = imagenesTotal[elem].promocion;
+		docFragment.appendChild(crearImg(url,clase));
 
 	});
-	//mostrar todas las fotos por defecto
+	//mostrar todas las fotos aleatoriamente por defecto
 	divContenedor.appendChild(docFragment);
 
-	var selector = document.getElementById('selector');
-	selector.addEventListener('change',function(){
-		imagenesTotal.filter(function(elem){return elem.promocion == selector.value}).forEach(function(elem){
-			docFragment.appendChild(crearImg(elem.img));
-		});
-
-		divContenedor.innerHTML="";
-		divContenedor.appendChild(docFragment);
-	});
 });
 
+var arrayImg = document.getElementsByTagName('img');
+var selector = document.getElementById('selector');
+//mostrar las imagenes de acuerdo a lo seleccionado
+selector.addEventListener('change',function(){
+	for(var i=0; i<arrayImg.length; i++){
+			if(arrayImg[i].classList.contains("ocultar")){
+				arrayImg[i].classList.remove("ocultar");
+			}
+			if(arrayImg[i].classList.value != selector.value){
+				arrayImg[i].classList.add("ocultar");
+			}			
+	}
+	
+	// imagenesTotal.filter(function(elem){return elem.promocion == selector.value}).forEach(function(elem){
+	// 	docFragment.appendChild(crearImg(elem.img,elem.promocion));
+	// });
+
+	// divContenedor.innerHTML="";
+	// divContenedor.appendChild(docFragment);
+});

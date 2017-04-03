@@ -1,6 +1,5 @@
 .div-contenedor{
 	text-align: center;
-
 	margin: 0px 200px;
 }
 .div-contenedor-img{
@@ -11,4 +10,7 @@ img{
 	width: 100px;
 	height: 130px;
 	margin: 5px;
+}
+.ocultar{
+	display: none;
 }
