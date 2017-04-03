@@ -1,0 +1,14 @@
+.div-contenedor{
+	text-align: center;
+
+	margin: 0px 200px;
+}
+.div-contenedor-img{
+	display: inline-block;	
+	margin: 20px 200px;
+}
+img{
+	width: 100px;
+	height: 130px;
+	margin: 5px;
+}
